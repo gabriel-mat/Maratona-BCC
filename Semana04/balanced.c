@@ -29,6 +29,7 @@ int main()
     return 0;
 }
 
+// função necessária para o qSort
 int comparacao(void *n1, void *n2)
 {
     // converte void* em int* e depois acessa seu valor
