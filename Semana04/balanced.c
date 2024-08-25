@@ -1,9 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define NUMERO_MAX 200000
 
-void ordenar(int vetor[], int tamanho);
-
+int comparacao(void *n1, void *n2);
 int maior_grupo(int vetor[], int tamanho, int diferenca);
 
 int main()
@@ -21,7 +21,7 @@ int main()
             scanf("%d", &numeros[j]);
         }
 
-        ordenar(numeros, num_digitos);
+        qsort(numeros, num_digitos, sizeof(int), comparacao);
 
         printf("%d\n", num_digitos - maior_grupo(numeros, num_digitos, dif_maxima));
     }
@@ -29,31 +29,10 @@ int main()
     return 0;
 }
 
-void ordenar(int vetor[], int tamanho)
+int comparacao(void *n1, void *n2)
 {
-    int alteracao, auxiliar;
-
-    for (int i = 0; i < tamanho; i++)
-    {
-        alteracao = 0;
-
-        for (int j = 0; j < tamanho - i - 1; j++)
-        {
-            if (vetor[j + 1] < vetor[j])
-            {
-                auxiliar = vetor[j + 1];
-                vetor[j + 1] = vetor[j];
-                vetor[j] = auxiliar;
-
-                alteracao = 1;
-            }
-        }
-
-        if (alteracao == 0)
-        {
-            break;
-        }
-    }
+    // converte void* em int* e depois acessa seu valor
+    return (*(int *)n1 - *(int *)n2);
 }
 
 // retorna o tamanho do maior subgrupo que atenda às regras
