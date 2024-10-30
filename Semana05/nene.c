@@ -1,61 +1,29 @@
 #include <stdio.h>
 
-void recebendo_sequencia(int tamanho, int sequencia[]);
+int main() {
+  int test_cases, seq_length, num_cases, num, seq, gc;
 
-int numero_ganhadores(int num_jogadores, int sequencia[], int tamanho_sequencia);
+  scanf("%d", &test_cases);
 
-int main()
-{
-    int num_testes_geral, num_jogadores, num_testes_n, tamanho_a;
+  for (int i = 0; i < test_cases; i++) {
+    scanf("%d %d", &seq_length, &num_cases);
 
-    scanf("%d", &num_testes_geral);
+    scanf("%d", &seq);
 
-    for (int i = 0; i < num_testes_geral; i++)
-    {
-        scanf("%d %d", &tamanho_a, &num_testes_n);
+    for (int k = 0; k < seq_length - 1; k++)
+      scanf("%d", &gc);
 
-        int sequencia[tamanho_a], n_testes[num_testes_n];
+    for (int j = 0; j < num_cases; j++) {
+      scanf("%d", &num);
 
-        recebendo_sequencia(tamanho_a, sequencia);
-        recebendo_sequencia(num_testes_n, n_testes);
-
-        int sequencia_auxiliar[tamanho_a];
-
-        for (int k = 0; k < tamanho_a; k++)
-        {
-            sequencia_auxiliar[k] = sequencia[k];
-        }
-
-        for (int j = 0; j < num_testes_n; j++)
-        {
-            printf("%d ", numero_ganhadores(n_testes[j], sequencia, tamanho_a));
-        }
-        printf("\n");
+      if (num >= seq)
+        printf("%d ", seq - 1);
+      else
+        printf("%d ", num);
     }
 
-    return 0;
-}
+    printf("\n");
+  }
 
-void recebendo_sequencia(int tamanho, int sequencia[])
-{
-    for (int i = 0; i < tamanho; i++)
-    {
-        scanf("%d", &sequencia[i]);
-    }
-}
-
-int numero_ganhadores(int num_jogadores, int sequencia[], int tamanho_sequencia)
-{
-    int eliminados = 0, auxiliar = num_jogadores;
-
-    for (int i = 0; i < tamanho_sequencia; i++)
-    {
-        if (sequencia[i] <= auxiliar)
-        {
-            auxiliar--;
-            eliminados++;
-        }
-    }
-
-    return num_jogadores - eliminados;
+  return 0;
 }
